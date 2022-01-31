@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateAccVC: UIViewController {
+class CreateAccVC: UIViewController, UIResponder {
    
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var userNameLabel: UITextField!
@@ -60,6 +60,10 @@ class CreateAccVC: UIViewController {
         next.pass  = self.pass
         
         show(next, sender: nil)
+    }
+    
+    func keyboardWillShowNotification(_ notification) {
+        
     }
     
     fileprivate func isEnabledButton() {
