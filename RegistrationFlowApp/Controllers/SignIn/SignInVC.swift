@@ -18,11 +18,24 @@ class SignInVC: UIViewController {
         super.viewDidLoad()
 
     }
+    
+    var email = ""
+    var password = ""
+    var userName: String? = ""
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let welcomeVC = WelcomeVC()
+        welcomeVC.loadData()
+        email = welcomeVC.email
+        password = welcomeVC.pass
+        userName = welcomeVC.name
+        print("SIGNINVC email: \(email), password: \(password), userName: \(userName)")
+    }
 
     @IBAction func emailDidEditing(_ sender: Any) {
         guard let text = emailTextField.text else { return }
         if !VerificationService.isValidEmail(email: text) {
-            emailErrorLabel.text = "Can't find user"
+            emailErrorLabel.text = "Incorrect email or password"
             emailErrorLabel.isHidden = false
         } else {
             emailErrorLabel.isHidden = true
@@ -39,7 +52,15 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
-        
+        if emailTextField.text == self.email && passwordTextField.text == self.password {
+            emailErrorLabel.isHidden = true
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let mainVC = storyboard.instantiateViewController(withIdentifier: "main") as? MainVC else { return }
+            mainVC.welcome = "Welcome \(self.userName ?? "fail load name")"
+            self.navigationController?.pushViewController(mainVC, animated: true)
+        } else {
+            emailErrorLabel.isHidden = false
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

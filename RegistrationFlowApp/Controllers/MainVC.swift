@@ -9,10 +9,14 @@ import UIKit
 
 class MainVC: UIViewController {
 
+    var welcome = ""
+    @IBOutlet weak var welcomeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        welcomeLabel.text = welcome
     }
+    
     
 }

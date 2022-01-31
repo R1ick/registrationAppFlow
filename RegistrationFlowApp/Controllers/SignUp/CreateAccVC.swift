@@ -7,8 +7,10 @@
 
 import UIKit
 
-class CreateAccVC: UIViewController, UIResponder {
-   
+class CreateAccVC: UIViewController {
+    
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var userNameLabel: UITextField!
     @IBOutlet weak var emailTF: UITextField!
@@ -28,15 +30,23 @@ class CreateAccVC: UIViewController, UIResponder {
     @IBOutlet weak var greenPassView: UIView!
     @IBOutlet weak var purplePassView: UIView!
     
+    var contentSize: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        contentSize = self.scrollView.contentSize.height
     }
     
     var email = "email"
     var pass = "pass"
+    var name: String? = ""
     
     @IBAction func didEditingEmailTF(_ sender: Any) {
         getResult(from: emailTF, with: emailErrorLabel, case: .email)
@@ -58,12 +68,26 @@ class CreateAccVC: UIViewController, UIResponder {
         guard let next = storyboard.instantiateViewController(withIdentifier: "codeVC") as? CodeVerifyVC else { return }
         next.email = self.email
         next.pass  = self.pass
+        next.name = self.name ?? ""
+        print("CreateAccVC email: \(email), password: \(pass)")
         
         show(next, sender: nil)
     }
     
-    func keyboardWillShowNotification(_ notification) {
-        
+    
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.scrollView.contentSize.height == self.contentSize {
+                self.scrollView.contentSize.height += keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.scrollView.contentSize.height != self.contentSize {
+            self.scrollView.contentSize.height = self.contentSize
+        }
     }
     
     fileprivate func isEnabledButton() {
@@ -72,6 +96,7 @@ class CreateAccVC: UIViewController, UIResponder {
                 signUpButton.isEnabled = true
                 self.email = emailTF.text!
                 self.pass = passwordTF.text!
+                self.name = userNameTF.text ?? "fail"
             } else {
                 signUpButton.isEnabled = false
             }

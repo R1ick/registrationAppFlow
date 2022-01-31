@@ -13,27 +13,40 @@ class CodeVerifyVC: UIViewController {
     
     var email = ""
     var pass = ""
+    var name: String = ""
     
     @IBOutlet weak var codeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
         getRandomCode()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateData(with: email, and: pass)
+        print("CodeVerifyVC email: \(email), password: \(pass)")
     }
     
     
     @IBAction func didEditingCodeTF(_ sender: UITextField) {
         guard let text = sender.text else { return }
         let storyboard = UIStoryboard(name: "SignUpStoryboard", bundle: nil)
-        let nextVC = storyboard.instantiateViewController(withIdentifier: "welcome")
+        guard let nextVC = storyboard.instantiateViewController(withIdentifier: "welcome") as? WelcomeVC else { return }
+        nextVC.email = self.email
+        nextVC.pass = self.pass
+        nextVC.name = self.name
         if String(num) == text {
-            show(nextVC, sender: nil)
+            self.navigationController?.pushViewController(nextVC, animated: true)
         }
     }
     
     func getRandomCode() {
         self.codeLabel.text = "'\(num)' Enter the code here"
+    }
+    
+    private func updateData(with email: String, and pass: String) {
+        self.email = email
+        self.pass = pass
     }
 }

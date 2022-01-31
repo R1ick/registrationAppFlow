@@ -241,6 +241,7 @@
                         <outlet property="passwordTF" destination="lfJ-Tl-l3s" id="0Ia-cW-Ch6"/>
                         <outlet property="purplePassView" destination="fgQ-Ic-7Cs" id="RbG-jN-TDJ"/>
                         <outlet property="redPassView" destination="1SK-aE-hkn" id="YWz-Lu-NSN"/>
+                        <outlet property="scrollView" destination="Wgm-Ak-UyR" id="OSF-bA-zsn"/>
                         <outlet property="signUpButton" destination="WEJ-qS-19C" id="d0a-M5-cM6"/>
                         <outlet property="userNameLabel" destination="EHu-Mq-GmU" id="0hk-Vj-70i"/>
                         <outlet property="userNameTF" destination="EHu-Mq-GmU" id="IH8-E5-7HB"/>
