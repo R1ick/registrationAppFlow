@@ -25,7 +25,6 @@ class CodeVerifyVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateData(with: email, and: pass)
-        print("CodeVerifyVC email: \(email), password: \(pass)")
     }
     
     

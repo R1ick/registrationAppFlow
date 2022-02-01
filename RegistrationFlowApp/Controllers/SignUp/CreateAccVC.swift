@@ -69,7 +69,6 @@ class CreateAccVC: UIViewController {
         next.email = self.email
         next.pass  = self.pass
         next.name = self.name ?? ""
-        print("CreateAccVC email: \(email), password: \(pass)")
         
         show(next, sender: nil)
     }
@@ -78,7 +77,7 @@ class CreateAccVC: UIViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.scrollView.contentSize.height == self.contentSize {
+            if self.scrollView.contentSize.height < view.frame.height {
                 self.scrollView.contentSize.height += keyboardSize.height
             }
         }

@@ -20,6 +20,7 @@
 		C478D7B327A53B4C006BE08C /* CreateAccVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478D7B227A53B4C006BE08C /* CreateAccVC.swift */; };
 		C478D7B527A53B5B006BE08C /* CodeVerifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478D7B427A53B5B006BE08C /* CodeVerifyVC.swift */; };
 		C478D7B727A53B64006BE08C /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C478D7B627A53B64006BE08C /* WelcomeVC.swift */; };
+		C4FC13F727A925B200997F07 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FC13F627A925B200997F07 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C478D7B227A53B4C006BE08C /* CreateAccVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccVC.swift; sourceTree = "<group>"; };
 		C478D7B427A53B5B006BE08C /* CodeVerifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerifyVC.swift; sourceTree = "<group>"; };
 		C478D7B627A53B64006BE08C /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		C4FC13F627A925B200997F07 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				C46793AC27A5564500FA0011 /* VerificationService.swift */,
+				C4FC13F627A925B200997F07 /* User.swift */,
 				C46793AB27A5562A00FA0011 /* App */,
 				C478D7B827A53B72006BE08C /* Controllers */,
 				C478D7AF27A53B19006BE08C /* Views */,
@@ -78,6 +81,14 @@
 				C40A28F727A53AA500EDC2A5 /* Info.plist */,
 			);
 			path = RegistrationFlowApp;
+			sourceTree = "<group>";
+		};
+		C43220DF27A7D88E00903417 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C42C90AA27A56D080035BCEA /* MainVC.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		C46793AB27A5562A00FA0011 /* App */ = {
@@ -105,7 +116,7 @@
 			children = (
 				C478D7B927A53B79006BE08C /* SignIn */,
 				C478D7BA27A53B7E006BE08C /* SignUp */,
-				C42C90AA27A56D080035BCEA /* MainVC.swift */,
+				C43220DF27A7D88E00903417 /* Main */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -206,6 +217,7 @@
 				C40A28EA27A53AA500EDC2A5 /* AppDelegate.swift in Sources */,
 				C40A28EC27A53AA500EDC2A5 /* SceneDelegate.swift in Sources */,
 				C478D7B727A53B64006BE08C /* WelcomeVC.swift in Sources */,
+				C4FC13F727A925B200997F07 /* User.swift in Sources */,
 				C42C90AB27A56D080035BCEA /* MainVC.swift in Sources */,
 				C478D7B127A53B40006BE08C /* SignInVC.swift in Sources */,
 				C478D7B527A53B5B006BE08C /* CodeVerifyVC.swift in Sources */,

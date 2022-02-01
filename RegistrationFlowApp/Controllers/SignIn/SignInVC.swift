@@ -22,10 +22,15 @@ class SignInVC: UIViewController {
     var email = ""
     var password = ""
     var userName: String? = ""
+    var counter = 0
+    var users = [User]()
     
     override func viewWillAppear(_ animated: Bool) {
         let welcomeVC = WelcomeVC()
-        welcomeVC.loadData()
+        if counter > 0 {
+            welcomeVC.getUsersFromUD(users: &users)
+            print(users)
+        }
         email = welcomeVC.email
         password = welcomeVC.pass
         userName = welcomeVC.name
@@ -52,7 +57,13 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
-        if emailTextField.text == self.email && passwordTextField.text == self.password {
+        for user in users {
+            if user.email == emailTextField.text,
+               user.password == passwordTextField.text {
+                self.userName = user.name
+            }
+        }
+        if counter > 0 {
             emailErrorLabel.isHidden = true
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let mainVC = storyboard.instantiateViewController(withIdentifier: "main") as? MainVC else { return }
@@ -61,6 +72,20 @@ class SignInVC: UIViewController {
         } else {
             emailErrorLabel.isHidden = false
         }
+//        if emailTextField.text == self.email && passwordTextField.text == self.password {
+//            emailErrorLabel.isHidden = true
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            guard let mainVC = storyboard.instantiateViewController(withIdentifier: "main") as? MainVC else { return }
+//            mainVC.welcome = "Welcome \(self.userName ?? "fail load name")"
+//            self.navigationController?.pushViewController(mainVC, animated: true)
+//        } else {
+//            emailErrorLabel.isHidden = false
+//        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.counter += 1
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
